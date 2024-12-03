@@ -1,0 +1,27 @@
+<div class="login-container">
+    <h1>Utility Bill Payment</h1>
+    <h2>Login</h2>
+    <form (ngSubmit)="sendOtp()">
+      <div class="form-group">
+        <label for="customerId">Customer ID:</label>
+        <input type="text" id="customerId" [(ngModel)]="customerId" name="customerId" required>
+      </div>
+      <button type="submit" class="btn">Send OTP</button>
+    </form>
+  
+    <div *ngIf="otpSent" class="otp-section">
+      <h3>Enter OTP</h3>
+      <form (ngSubmit)="verifyOtp()">
+        <div class="form-group">
+          <label for="otp">OTP:</label>
+          <input type="text" id="otp" [(ngModel)]="otp" name="otp" required>
+        </div>
+        <button type="submit" class="btn">Verify OTP</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 BBC-UBP. All Rights Reserved.</p>
+  </footer>
+  

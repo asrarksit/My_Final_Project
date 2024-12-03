@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <img class="image" src="../../assets/images/Logo.jpg" style="width: 50px; height: 50px; border-radius: 50%;"/>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="btn btn-align" (click)="home()">Home</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="btn btn-align" (click)="payment()">Bill Details</a>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item" (click)="toggleProfileMenu()">
+        <a class="nav-link" role="button" id="userProfileToggle">
+          <div class="user-icon">
+            <i class="bi bi-person-circle"></i>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="showProfileMenu" class="profile-menu dropdown-menu dropdown-menu-end show">
+    <div class="align-card">
+      <div class="user-profile">
+        <b>User Profile</b>
+      </div>
+      <div>
+        <strong>Name:</strong> {{user.name}}
+      </div>
+      <div>
+        <strong>Phone:</strong> {{user.phoneNumber}}
+      </div>
+      <div>
+        <strong>Email:</strong> {{user.email}}
+      </div>
+      <div>
+        <strong>Customer ID:</strong> {{user.customerId}}
+      </div>
+    </div>
+    <hr class="dropdown-divider">
+    <div class="dropdown-item">
+      <button class="btn btn-danger w-100" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,90 @@
+<app-header></app-header>
+
+
+  <ul ngbNav #nav="ngbNav" class="nav-tabs tab-width-100">
+    <li class="b1" ngbNavItem>
+      <button class="tab-width-100" ngbNavLink>Pending Bills</button>
+      <ng-template ngbNavContent>
+        <table class="table">
+          <thead class="thead-dark bg-dark">
+            <tr>
+              <th scope="col">BillId</th>
+              <th scope="col">Bill Month</th>
+              <th scope="col">Due Date</th>
+              <th scope="col">Due Amount</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="paymentHistory.length > 0; else noBills">
+            <tr *ngFor="let bill of paymentHistory">
+              <th scope="row">{{ bill.id }}</th>
+              <td>{{ bill.durationInMonths }}</td>
+              <td>{{ bill.billDueDate | date }}</td>
+              <td>{{ bill.amountDue | currency:'INR':'symbol' }}</td>
+              <td>
+                {{ bill.isPaid ? 'Paid' : 'Due' }}
+              </td>
+              <td>
+                <button *ngIf="!bill.isPaid" (click)="onSubmitPay(bill)" class="btn btn-success">Pay</button>
+              </td>
+            </tr>
+          </tbody>
+          
+          <ng-template #noBills>
+            <tr>
+              <td colspan="6" class="text-center">
+                <h5 class="text-center">No Pending Bills Available at the Moment. Please Check Back Later.</h5>
+              </td>
+            </tr>
+          </ng-template>
+          
+        </table>
+
+      </ng-template>
+    </li>
+    <li class="b1" ngbNavItem>
+      <button class="tab-width-100" ngbNavLink>Transaction History</button>
+      <ng-template ngbNavContent>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Payment Id</th>
+              <th scope="col">Bill Month</th>
+              <th scope="col">Due Amount</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="transactionHistory.length > 0; else noTransaction">
+            <tr *ngFor="let transaction of transactionHistory">
+              <th scope="row">{{ transaction.id }}</th>
+              <td>{{ transaction.paymentDate | date }}</td>
+              <td>{{ transaction.amountPaid | currency:'INR':'symbol' }}</td> <!-- Using Angular's currency pipe -->
+              <td>
+                Paid
+              </td>
+              <td>
+                <button class="btn btn-primary" (click)="downloadInvoice(transaction.id)">Download Invoice</button>
+              </td>
+            </tr>
+          </tbody>
+          <ng-template #noTransaction>
+            <tr>
+              <td colspan="6" class="text-center">
+                <h5 class="text-center">No Transaction History Available at the Moment. Please Check Back Later.</h5>
+              </td>
+            </tr>
+          </ng-template>
+        </table>
+
+      </ng-template>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav"></div>
+<div *ngIf="isPaymentVisible" class="card">
+  <app-payment [billDetails]="billDetails"> </app-payment>
+</div>
+<!-- <footer class="footer" >
+  <p>&copy; 2024 BBC-UBP. All Rights Reserved.</p>
+</footer> -->

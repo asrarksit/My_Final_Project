@@ -1,0 +1,41 @@
+.tab-width-100{
+    width:100%
+}
+.b1{
+    width:50%
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: var(--bs-card-height);
+    color: var(--bs-body-color);
+    word-wrap: break-word;
+    background-color: aliceblue;
+    background-clip: border-box;
+    border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+    border-radius: var(--bs-card-border-radius);
+    margin-left: 33%;
+    margin-top: 3%;
+    max-width: 500px;
+    padding: 30px;
+    flex:1;
+}
+.text-center {
+    text-align: center!important;
+}
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 1em;
+  }
